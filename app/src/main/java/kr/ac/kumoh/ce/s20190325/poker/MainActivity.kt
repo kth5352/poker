@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             main.card1.setImageResource(res[0])
-//            main.card2.setImageResource(res[1])
-//            main.card3.setImageResource(res[2])
-//            main.card4.setImageResource(res[3])
-//            main.card5.setImageResource(res[4])
+            main.card2.setImageResource(res[1])
+            main.card3.setImageResource(res[2])
+            main.card4.setImageResource(res[3])
+            main.card5.setImageResource(res[4])
         })
 
         main.btnShuffle.setOnClickListener {
@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getCardName(c: Int) : String {
-        // val에서 var로 변경
-        var shape = when (c / 13) {
+        val shape = when (c / 13) {
             0 -> "spades"
             1 -> "diamonds"
             2 -> "hearts"
@@ -50,27 +49,12 @@ class MainActivity : AppCompatActivity() {
 
         val number = when (c % 13) {
             0 -> "ace"
-            in 1..9 -> (c % 13 + 1).toString()
-            10 -> {
-                shape = shape.plus("2")
-                "jack"
-            }
-            11 -> {
-                shape = shape.plus("2")
-                "queen"
-            }
-            12 -> {
-                shape = shape.plus("2")
-                "king"
-            }
+            in 1..9 -> (c % 13 + 1).toString() // 1 to 9
+            10 -> "jack"
+            11 -> "queen"
+            12 -> "king"
             else -> "error"
         }
-
-        // 이 방법이 더 나을 듯
-//        if (c % 13 in 10..12)
-//            return "c_${number}_of_${shape}2"
-//        else
-//            return "c_${number}_of_${shape}"
 
         return "c_${number}_of_${shape}"
     }
